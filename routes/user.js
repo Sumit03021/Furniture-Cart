@@ -1,6 +1,6 @@
 const express = require('express');
-const User = require('../Furniture-Cart/models/User');
-const Address = require('../Furniture-Cart/models/Address');
+const User = require('../models/User');
+const Address = require('../models/Address');
 const {isLoggedIn} = require('../middleware');
 const router = express.Router();
 

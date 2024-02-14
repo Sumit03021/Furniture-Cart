@@ -1,8 +1,8 @@
 const express = require('express');
 const router =express.Router();
-const Product =require('../Furniture-Cart/models/Product');
-const User = require('../Furniture-Cart/models/User')
-const Review = require('../Furniture-Cart/models/Review');
+const Product = require('../models/Product');
+const User = require('../models/User')
+const Review = require('../models/Review');
 const {validateProduct,isLoggedIn ,isSeller ,isProductAuther} = require('../middleware');
 
 // show all products

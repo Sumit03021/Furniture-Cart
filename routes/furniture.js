@@ -1,5 +1,5 @@
 const express = require('express');
-const Product = require('../Furniture-Cart/models/Product');
+const Product = require('../models/Product');
 const {isLoggedIn} = require('../middleware');
 const router = express.Router();
 

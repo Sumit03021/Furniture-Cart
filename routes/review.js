@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../Furniture-Cart/models/Product');
-const Review = require('../Furniture-Cart/models/Review');
+const Product = require('../models/Product');
+const Review = require('../models/Review');
 const {validateReview} = require('../middleware');
 const {isLoggedIn} =require('../middleware')
 

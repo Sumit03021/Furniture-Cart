@@ -1,5 +1,5 @@
 const {productSchema ,reviewSchema} = require('./schema');
-const Product = require('./Furniture-Cart/models/Product')
+const Product = require('./models/Product')
 
 
 const validateProduct = (req,res,next)=>{

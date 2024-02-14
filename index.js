@@ -15,7 +15,7 @@ const addressRoute = require('./routes/address')
 const furnitureRoute = require('./routes/furniture')
 const passport = require('passport')
 const loaclStrategy = require('passport-local')
-const User = require('./Furniture-Cart/models/User')
+const User = require('./models/User')
 const {date }= require('joi')
 const dotenv = require('dotenv').config()
 //connect mongodb

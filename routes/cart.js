@@ -1,7 +1,7 @@
 const express = require('express');
-const User = require('../Furniture-Cart/models/User');
-const Product = require('../Furniture-Cart/models/Product');
-const Cart = require('../Furniture-Cart/models/Cart');
+const User = require('../models/User');
+const Product = require('../models/Product');
+const Cart = require('../models/Cart');
 const {isLoggedIn} = require('../middleware');
 const stripe = require('stripe')
 ('sk_test_51ObzemSAN1sJa92KzbwUGIlfMPC3izaYtvDsO3OplX88TO81eVBWJupn4X3pxtuUWGe7DNdvrinoszkl0lscfWpm00gz3aPWBe')
