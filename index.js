@@ -66,7 +66,7 @@ app.use((req,res,next)=>{
 app.get('/',(req,res)=>{
   res.render("home")
 })
-
+,
 //Routes
 app.use(productRoute);
 app.use(reviewRoute);
