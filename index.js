@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')
 const flash = require('connect-flash')
 const productRoute = require('./routes/product')
 const reviewRoute = require('./routes/review')
@@ -36,6 +37,9 @@ let configSession = {
 secret:'key cat',
 resave:false,
 saveUninitialized:true,
+store:new MongoStore({
+mongoUrl:process.env.MONGODB_URL,
+}),
 cookies:{
   httpOnly:true,
   expires:Date.now() + 7*24*60*60*1000,

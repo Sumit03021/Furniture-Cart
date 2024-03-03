@@ -136,11 +136,17 @@ router.delete('/user/cart/:id',isLoggedIn ,async(req,res)=>{
 router.get('/checkout/:id',async(req,res)=>{
 let userId = req.user._id;
 let user = await User.findById(userId).populate({path:'cart',populate:{path:'product'}});
-let totalAmount = await user.cart.reduce(async(sumProduct,item)=>{
-let sum = await sumProduct;
-let product = await Product.findById(item.product);
-return sum + (product ? product.price*item.quantity :0)
-},0);
+// let totalAmount = await user.cart.reduce(async(sumProduct,item)=>{
+// let sum = await sumProduct;
+// let product = await Product.findById(item.product);
+// return sum + (product ? product.price*item.quantity :0)
+// },0);
+let arr = await Promise.all(user.cart.map(async(item)=>{
+  return {
+    product:await Product.findById(item.product),
+    quantity:item.quantity
+  }
+}))
 
 const customer = await stripe.customers.create({
   name: 'Jenny Rosen',
@@ -154,18 +160,18 @@ const customer = await stripe.customers.create({
 })
 
 const session = await stripe.checkout.sessions.create({
-  line_items: [
-    {
+  line_items: arr.map((item)=>{
+    return{
       price_data: {
         currency: 'inr',
         product_data: {
-          name: 'T-shirt',
+          name: item.product.name,
         },
-        unit_amount: totalAmount*100,
+        unit_amount: (item.product.price*100),
       },
-      quantity: 1,
-    },
-  ],
+      quantity: item.quantity,
+    }
+  }),
   mode: 'payment',
   success_url: 'http://localhost:4242/success',
   cancel_url: 'http://localhost:4242/cancel',
